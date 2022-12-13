@@ -16,8 +16,6 @@
 			SCORE,
 			PATTERN = [], // PATTERN TO PLAY
 			NOTES = [70, 74, 75, 77],
-			UU = atob("aHR0cHM6Ly9hcGkuc3BhcmsuaW8vdjEvZGV2aWNlcy80OGZmNjkwNjUwNjc1NTUwMjc1NjEyODcvbGlnaHRjbWQ/YWNjZXNzX3Rva2VuPQ=="),
-			KK = atob("MWQzZTJmMDU5OGE3YmMzNTFjNzQ2MDdkODQ3OWI3ZGViYWNhNGI0NQ=="),
 			//NOTES = [70, 74, 75, 77, 82],
 			LISTEN = true, // LINK EACH COLOR TO A NOTE
 			RESPONSE = [], // USER PLAYBACK
@@ -78,20 +76,20 @@
 				myVar = setTimeout(funcx, 800);
 			}
 			function funcx() {
-			   $.post(UU+KK, { params: "alllightsOFF" } );
+			   $.post( "https://api.spark.io/v1/devices/48ff69065067555027561287/lightcmd?access_token=029c0f904d45dab832a13ffe46184fe4ee29b661", { params: "alllightsOFF" } );
 			}
 			var note = el.id.replace('col','') - 1;
 			if(note==0){
-				$.post(UU+KK, { params: "light1ON" } );
+				$.post( "https://api.spark.io/v1/devices/48ff69065067555027561287/lightcmd?access_token=029c0f904d45dab832a13ffe46184fe4ee29b661", { params: "light1ON" } );
 			}
 			if(note==1){
-				$.post(UU+KK, { params: "light2ON" } );
+				$.post( "https://api.spark.io/v1/devices/48ff69065067555027561287/lightcmd?access_token=029c0f904d45dab832a13ffe46184fe4ee29b661", { params: "light2ON" } );
 			}
 			if(note==2){
-				$.post(UU+KK, { params: "light3ON" } );
+				$.post( "https://api.spark.io/v1/devices/48ff69065067555027561287/lightcmd?access_token=029c0f904d45dab832a13ffe46184fe4ee29b661", { params: "light3ON" } );
 			}
 			if(note==3){
-				$.post(UU+KK, { params: "light4ON" } );
+				$.post( "https://api.spark.io/v1/devices/48ff69065067555027561287/lightcmd?access_token=029c0f904d45dab832a13ffe46184fe4ee29b661", { params: "light4ON" } );
 			}
 			myFunction();
 			el.className = 'active';

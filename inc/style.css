@@ -138,14 +138,14 @@ body #content > a#col4.active {
 	box-shadow: 0 0 10px #FFA718; 
 }
 
-/*body #content > a#col5 {
+body #content > a#col5 {
 	background: #613D42;
 	
 }
 body #content > a#col5.active { 
 	background: #FF434F;
 	box-shadow: 0 0 10px #FF3C49; 
-}*/
+}
 
 /* ctrl bar */
 
@@ -251,11 +251,11 @@ body .button:active {
 }
 
 h1 {
-	font-size: 0.8em;
+	font-size: 4em;
 	font-weight: bold;
 	line-height: 1em;
 	margin-bottom: .2em;
-	margin-top: .5em;
+	margin-top: .75em;
 }
 
 body #intro {

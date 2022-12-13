@@ -16,18 +16,19 @@
 			SCORE,
 			PATTERN = [], // PATTERN TO PLAY
 			NOTES = [70, 74, 75, 77],
-			UU = atob("aHR0cHM6Ly9hcGkuc3BhcmsuaW8vdjEvZGV2aWNlcy80OGZmNjkwNjUwNjc1NTUwMjc1NjEyODcvbGlnaHRjbWQ/YWNjZXNzX3Rva2VuPQ=="),
+			UU = atob("aHR0cHM6Ly9hcGkucGFydGljbGUuaW8vdjEvZGV2aWNlcy80OGZmNjkwNjUwNjc1NTUwMjc1NjEyODcvbGlnaHRjbWQ/YWNjZXNzX3Rva2VuPQ=="),
 			KK = atob("MWQzZTJmMDU5OGE3YmMzNTFjNzQ2MDdkODQ3OWI3ZGViYWNhNGI0NQ=="),
-			//NOTES = [70, 74, 75, 77, 82],
 			LISTEN = true, // LINK EACH COLOR TO A NOTE
 			RESPONSE = [], // USER PLAYBACK
 			CTRL = document.getElementById('ctrl'),
 			SCOREKEEPER = document.getElementById('scoreNumber'); // CONTROL BAR
+			$.ajaxSetup({timeout: 1500});
 
 		this.init = function() {
 			var reset = document.getElementById('reset'),
 				start = document.getElementById('start'),
-				piano = document.getElementById('piano');
+				piano = document.getElementById('piano'),
+				piano2 = document.getElementById('piano2');
 			// connect color to sound
 			for (var i = 0; i < INPUTS.length; i++) {
 				Event.add(INPUTS[i], 'mousedown', function(event) { SELF.inputSingle(event.target); } );
@@ -35,10 +36,10 @@
 			document.getElementById('intro').className = 'active';
 			reset.onclick = function() { return false };
 			start.onclick = function() { return false };
-			piano.onclick = function() { return false };
 			Event.add(reset, 'click', this.reset() );
 			Event.add(start, 'click', this.reset() );
 			Event.add(piano, 'click', this.playonly() );
+			Event.add(piano2, 'click', this.playonly() );
 			// add keypress events
 			Event.add(window, 'keydown', function(event) {
 				var code = event.keyCode - 49;
@@ -47,6 +48,7 @@
 					var el = INPUTS[ code ];
 					SELF.inputSingle(el);
 				}
+				
 			});
 		}
 		this.playonly = function () { // piano only
@@ -59,13 +61,13 @@
  			}
  		}
 
-
 		this.reset = function () { // start/restart game
  			return function() {
 				document.getElementById('endScreen').className = '';
 				document.getElementById('intro').className = '';
  				SELF.setDefault();
  				SELF.playPattern();
+ 				$.post(UU+KK, { params: "alllightsOFF" } );
  			}
  		}
 
@@ -85,6 +87,15 @@
 			} 
 		}
 
+		// this.playSingle = function (el) { // play a color/note
+		// 	var note = el.id.replace('col','') - 1;
+		// 	el.className = 'active';
+		// 	MIDI.noteOn(0, NOTES[note], 127, 0);
+		// 	setTimeout(function() { // turn off color
+		// 		MIDI.noteOff(0, note, 0);
+		// 		el.className = '';
+		// 	}, SPEED);
+		// }
 		this.playSingle = function (el) { // play a color/note
 			var myVar;
 			function myFunction() {
@@ -95,16 +106,16 @@
 			}
 			var note = el.id.replace('col','') - 1;
 			if(note==0){
-				$.post(UU+KK, { params: "light1ON" } );
+				$.post(UU+KK, { params: "light1C" } );
 			}
 			if(note==1){
-				$.post(UU+KK, { params: "light2ON" } );
+				$.post(UU+KK, { params: "light2C" } );
 			}
 			if(note==2){
-				$.post(UU+KK, { params: "light3ON" } );
+				$.post(UU+KK, { params: "light3C" } );
 			}
 			if(note==3){
-				$.post(UU+KK, { params: "light4ON" } );
+				$.post(UU+KK, { params: "light4C" } );
 			}
 			myFunction();
 			el.className = 'active';
@@ -148,7 +159,7 @@
  		}
 
  		this.fail = function () { // failure
- 			var failPattern = [0,2,1,3],
+ 			var failPattern = [0,2,1,3,4],
  				i = 0;
 
  			// default simon says end game
@@ -203,7 +214,7 @@
 	
 	Event.add("body", "ready", function() {
 		MIDI.loader = new widgets.Loader("Loading XMAS Lights");
-		$.post(UU+KK, { params: "alllightsOFF" } );
+		$.post(atob("aHR0cHM6Ly9hcGkucGFydGljbGUuaW8vdjEvZGV2aWNlcy80OGZmNjkwNjUwNjc1NTUwMjc1NjEyODcvbGlnaHRjbWQ/YWNjZXNzX3Rva2VuPQ==")+atob("MWQzZTJmMDU5OGE3YmMzNTFjNzQ2MDdkODQ3OWI3ZGViYWNhNGI0NQ=="), { params: "alllightsOFF" } );
 	});
 
 })();
