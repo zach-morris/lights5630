@@ -22,7 +22,7 @@
 			RESPONSE = [], // USER PLAYBACK
 			CTRL = document.getElementById('ctrl'),
 			SCOREKEEPER = document.getElementById('scoreNumber'); // CONTROL BAR
-			$.ajaxSetup({timeout: 1500});
+			// $.ajaxSetup({timeout: 1500});
 
 		this.init = function() {
 			var reset = document.getElementById('reset'),
