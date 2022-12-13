@@ -102,7 +102,8 @@
 				myVar = setTimeout(funcx, 800);
 			}
 			function funcx() {
-			   $.post(UU+KK, { params: "alllightsOFF" } );
+				//pass
+			   // $.post(UU+KK, { params: "alllightsOFF" } );
 			}
 			var note = el.id.replace('col','') - 1;
 			if(note==0){
